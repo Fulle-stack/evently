@@ -1,0 +1,393 @@
+:root {
+    --primary: #0ea5e9;
+    --dark: #0f172a;
+    --gray: #64748b;
+    --light-bg: #f6f7f8;
+    --white: #ffffff;
+    --border: #e2e8f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--light-bg);
+    color: var(--dark);
+    line-height: 1.5;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Header --- */
+.header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    height: 72px;
+    display: flex;
+    align-items: center;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+}
+
+.logo h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.desktop-nav {
+    display: none;
+    gap: 24px;
+}
+
+.desktop-nav a {
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.desktop-nav a:hover {
+    color: var(--primary);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 14px;
+    display: none;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #eee;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Ticket Main --- */
+.main-content {
+    padding: 40px 0;
+}
+
+/* Обертка для позиционирования над билетом */
+.ticket-header-wrapper {
+    max-width: 900px;
+    /* Должно совпадать с max-width вашего .ticket-card */
+    margin: 0 auto 20px;
+    /* Центрируем саму обертку и даем отступ снизу до билета */
+    width: 100%;
+}
+
+.ticket-header {
+    text-align: left;
+    /* Выравниваем текст по левому краю обертки */
+    padding: 0;
+    /* Убираем лишние отступы, чтобы текст прилип к воображаемой линии обводки */
+}
+
+.ticket-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.ticket-header p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 768px) {
+    .ticket-header {
+        padding: 0 10px;
+        /* Небольшой отступ на мобильных, чтобы текст не касался края экрана */
+    }
+}
+
+/* --- Ticket Card --- */
+.ticket-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.ticket-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.mobile-ticket-title {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ticket-info {
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.date-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detail-item {
+    display: flex;
+    gap: 15px;
+}
+
+.detail-item span {
+    color: #cbd5e1;
+}
+
+.detail-item label {
+    display: block;
+    font-size: 12px;
+    color: var(--gray);
+}
+
+.detail-item p {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.ticket-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-number {
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 600;
+}
+
+.status-badge {
+    background: #dcfce7;
+    color: #166534;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.ticket-qr-section {
+    background: #f8fafc;
+    padding: 30px;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.qr-container {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.qr-container img {
+    width: 140px;
+    height: 140px;
+}
+
+.qr-text {
+    font-size: 12px;
+    color: var(--gray);
+    text-align: center;
+    max-width: 150px;
+}
+
+/* --- Actions --- */
+.actions {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-download {
+    background: var(--primary);
+    color: white;
+    border: none;
+    height: 50px;
+    padding: 0 40px;
+    border-radius: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    width: 100%;
+    justify-content: center;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ========================================= */
+/* --- MEDIA QUERIES --- */
+/* ========================================= */
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .desktop-nav,
+    .user-name {
+        display: flex;
+    }
+
+    .ticket-card {
+        flex-direction: row;
+        height: 450px;
+    }
+
+    .ticket-image {
+        width: 35%;
+        height: auto;
+    }
+
+    .mobile-ticket-title {
+        display: none;
+    }
+
+    .ticket-qr-section {
+        width: 240px;
+        border-top: none;
+        border-left: 1px dashed var(--border);
+        justify-content: center;
+    }
+
+    .btn-download {
+        width: auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 960px;
+    }
+
+    .ticket-header {
+        text-align: left;
+    }
+
+    .ticket-header h1 {
+        font-size: 32px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1500px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1800px;
+    }
+
+    .main-content {
+        padding: 80px 0;
+    }
+}

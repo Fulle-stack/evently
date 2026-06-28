@@ -1,0 +1,143 @@
+/* =====================================================================
+   Evently — кросс-страничная полировка интерфейса (UI polish)
+   Подключается ПОСЛЕ основного CSS страницы. Аккуратные улучшения
+   состояний/фокуса/переходов, не ломающие существующую вёрстку.
+   ===================================================================== */
+
+:root {
+    --ev-ring: #0ea5e9;
+    --ev-ease: 200ms cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Доступность: видимое кольцо фокуса для клавиатуры на всех интерактивных */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--ev-ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+/* Указатель и плавность для кликабельного */
+button,
+[role="button"],
+.btn,
+.btn-primary,
+.btn-outline,
+.btn-register,
+.btn-more,
+.btn-submit,
+.submit-btn,
+.btn-search,
+.btn-login,
+.view-all,
+label.role-card {
+    cursor: pointer;
+    transition: transform var(--ev-ease), box-shadow var(--ev-ease),
+                background-color var(--ev-ease), color var(--ev-ease), border-color var(--ev-ease);
+}
+
+/* Нажатие — лёгкое утопление (тактильность) */
+button:active,
+.btn:active,
+.btn-primary:active,
+.btn-register:active,
+.btn-more:active,
+.btn-submit:active,
+.submit-btn:active,
+.btn-search:active {
+    transform: translateY(1px);
+}
+
+/* Первичные кнопки — подъём + тень при наведении */
+.btn-primary:hover,
+.btn-register:hover:not(:disabled):not(.registration-closed),
+.btn-submit:hover,
+.submit-btn:hover,
+.btn-search:hover {
+    box-shadow: 0 8px 20px rgba(14, 165, 233, .28);
+    transform: translateY(-1px);
+}
+
+/* Disabled — явно неактивно */
+button:disabled,
+.btn:disabled,
+.btn-register:disabled,
+.registration-closed {
+    opacity: .55;
+    cursor: not-allowed;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Поля ввода — единое поведение фокуса */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):focus,
+select:focus,
+textarea:focus {
+    border-color: var(--ev-ring) !important;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, .15);
+    outline: none;
+}
+
+/* Навигационные ссылки — мягкий ховер */
+.nav__link,
+.top-nav a,
+.footer__links a,
+.footer-links a {
+    transition: color var(--ev-ease), opacity var(--ev-ease);
+}
+.nav__link:hover,
+.top-nav a:hover,
+.footer__links a:hover,
+.footer-links a:hover {
+    color: var(--ev-ring, #0ea5e9);
+}
+
+/* Места в схеме зала — отклик на наведение */
+.seat.free {
+    transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+.seat.free:hover {
+    transform: scale(1.12);
+    box-shadow: 0 2px 8px rgba(14, 165, 233, .35);
+}
+
+/* Уважение к prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+    .btn-primary:hover, .btn-register:hover, .seat.free:hover { transform: none !important; }
+}
+
+/* ===== Страница события: акцент на цене и покупке ===== */
+.ticket-card{box-shadow:0 12px 32px rgba(2,8,23,.10) !important}
+@media (min-width:1024px){ .ticket-card{position:sticky;top:1.5rem} }
+.ticket-price{color:#0ea5e9 !important;font-weight:900 !important;letter-spacing:-.01em}
+#ticketPrice{font-size:2rem !important}
+.btn-register{height:3.25rem;font-size:1.05rem;font-weight:800;border-radius:.6rem}
+.btn-register:not(:disabled):not(.registration-closed){
+  background:#0ea5e9;color:#fff;box-shadow:0 8px 20px rgba(14,165,233,.30)}
+.btn-register:not(:disabled):not(.registration-closed):hover{background:#0284c7}
+/* статус свободных мест — заметнее */
+.spots-left{font-size:.95rem}
+.status-dot.green{box-shadow:0 0 0 4px rgba(16,185,129,.15)}
+
+/* ===== Единая боковая панель личного кабинета участника (.lk-*) ===== */
+.lk-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 4px 16px rgba(2,8,23,.05);padding:20px;display:flex;flex-direction:column;gap:18px}
+.lk-user{display:flex;align-items:center;gap:14px}
+.lk-ava{width:56px;height:56px;border-radius:50%;background:#0ea5e9;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;flex-shrink:0}
+.lk-name{font-size:16px;font-weight:700;color:#0f172a;line-height:1.2}
+.lk-role{font-size:13px;color:#64748b;margin-top:2px}
+.lk-nav{display:flex;flex-direction:column;gap:4px}
+.lk-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;text-decoration:none;color:#334155;font-size:15px;font-weight:500;transition:background .15s ease,color .15s ease}
+.lk-link .material-symbols-outlined{font-size:22px;color:#94a3b8;transition:color .15s ease}
+.lk-link:hover{background:#f1f5f9;color:#0f172a}
+.lk-link:hover .material-symbols-outlined{color:#0ea5e9}
+.lk-link.is-active{background:#e0f2fe;color:#0369a1;font-weight:600}
+.lk-link.is-active .material-symbols-outlined{color:#0ea5e9}
+.lk-sep{height:1px;background:#e2e8f0;margin:8px 0}
+.lk-link--danger{color:#dc2626}
+.lk-link--danger .material-symbols-outlined{color:#dc2626}
+.lk-link--danger:hover{background:#fef2f2;color:#b91c1c}
